@@ -1,12 +1,13 @@
-<div>
-  <h3>
-    Bids Book
-  </h3>
+Hello World
 
-</div>
-<div>
-  <h3>
-    Asks Book
-  </h3>
-
-</div>
+<ngx-datatable
+  class="material"
+  [rows]="orderBook.bids"
+  [loadingIndicator]="loadingIndicator"
+  [columns]="bidColumns"
+  [columnMode]="'force'"
+  [headerHeight]="40"
+  [footerHeight]="40"
+  [limit]="10"
+  [rowHeight]="'auto'">
+</ngx-datatable>
