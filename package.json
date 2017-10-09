@@ -21,8 +21,10 @@
     "@angular/platform-browser": "^4.2.4",
     "@angular/platform-browser-dynamic": "^4.2.4",
     "@angular/router": "^4.2.4",
+    "@swimlane/ngx-datatable": "^10.2.3",
+    "@types/lodash": "^4.14.77",
     "core-js": "^2.4.1",
-    "ng2-nvd3": "^2.0.0",
+    "lodash": "^4.17.4",
     "rxjs": "^5.4.2",
     "zone.js": "^0.8.14"
   },
@@ -45,6 +47,6 @@
     "protractor": "~5.1.2",
     "ts-node": "~3.2.0",
     "tslint": "~5.7.0",
-    "typescript": "~2.3.3"
+    "typescript": "^2.6.0-dev.20171007"
   }
 }
