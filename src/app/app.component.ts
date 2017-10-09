@@ -12,10 +12,11 @@ export class AppComponent implements OnInit {
     asks: []
   };
 
+  tradingPairs = [];
   loadingIndicator = true;
 
   bidColumns = [
-    { name: 'Bid' },
+    { name: 'Bids' },
     { name: 'Bittrex Volume' },
     { name: 'Poloniex Volume' },
     { name: 'Total Volume' },
@@ -23,7 +24,7 @@ export class AppComponent implements OnInit {
   ];
 
   askColumns = [
-    { name: 'Bid' },
+    { name: 'Asks' },
     { name: 'Bittrex Volume' },
     { name: 'Poloniex Volume' },
     { name: 'Total Volume' },
@@ -36,10 +37,15 @@ export class AppComponent implements OnInit {
 
   public ngOnInit() {
     this.orderBookService
+      .retrieveTradingPairs()
+      .subscribe((data) => {
+        this.tradingPairs = data;
+      });
+
+    this.orderBookService
       .retrieveOrderBook('BTC-ETH')
       .subscribe((data) => {
         this.orderBook = data;
-        this.orderBook = this.orderBookService.buildOrderBook(data);
         this.loadingIndicator = false;
       });
   }

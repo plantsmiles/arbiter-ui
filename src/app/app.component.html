@@ -1,13 +1,31 @@
-Hello World
+<div class="flex-container">
+  <!--{{orderBook.bids.length}} Bids / {{orderBook.asks.length}} Asks-->
+  <!--{{tradingPairs}}-->
+  <div class="column">
+    <ngx-datatable
+      class="material"
+      [rows]="orderBook.bids"
+      [loadingIndicator]="loadingIndicator"
+      [columns]="bidColumns"
+      [columnMode]="'force'"
+      [headerHeight]="40"
+      [footerHeight]="40"
+      [limit]="10"
+      [rowHeight]="'auto'">
+    </ngx-datatable>
+  </div>
+  <div class="column">
+    <ngx-datatable
+      class="material"
+      [rows]="orderBook.asks"
+      [loadingIndicator]="loadingIndicator"
+      [columns]="askColumns"
+      [columnMode]="'force'"
+      [headerHeight]="40"
+      [footerHeight]="40"
+      [limit]="10"
+      [rowHeight]="'auto'">
+    </ngx-datatable>
+  </div>
+</div>
 
-<ngx-datatable
-  class="material"
-  [rows]="orderBook.bids"
-  [loadingIndicator]="loadingIndicator"
-  [columns]="bidColumns"
-  [columnMode]="'force'"
-  [headerHeight]="40"
-  [footerHeight]="40"
-  [limit]="10"
-  [rowHeight]="'auto'">
-</ngx-datatable>
