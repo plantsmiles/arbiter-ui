@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import { OrderBookService } from './service/order.book.service';
+import { Socket } from 'ng-socket-io';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,7 @@ export class AppComponent implements OnInit {
   };
 
   tradingPairs = [];
+  currentTradingPair = 'BTC-ETH';
   loadingIndicator = true;
 
   bidColumns = [
@@ -32,7 +34,7 @@ export class AppComponent implements OnInit {
   ];
 
   constructor(
-    private orderBookService: OrderBookService,
+    private orderBookService: OrderBookService, private socket: Socket
   ) { }
 
   public ngOnInit() {
@@ -43,10 +45,20 @@ export class AppComponent implements OnInit {
       });
 
     this.orderBookService
-      .retrieveOrderBook('BTC-ETH')
+      .retrieveOrderBook(this.currentTradingPair)
       .subscribe((data) => {
         this.orderBook = data;
         this.loadingIndicator = false;
       });
+
+    this.socket.on(this.currentTradingPair, (data: any) => {
+        console.log(`Received ${this.currentTradingPair} update via socket io`);
+        this.orderBook = data;
+      });
+  }
+
+  @HostListener('window:beforeunload', ['$event'])
+  close($event) {
+    this.socket.disconnect();
   }
 }
