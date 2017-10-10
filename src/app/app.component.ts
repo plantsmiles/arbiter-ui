@@ -49,7 +49,6 @@ export class AppComponent implements OnInit {
 
   public changeTradingPair(tradingPair) {
     this.loadingIndicator = true;
-    this.socket.emit('unsubscribe', this.currentTradingPair);
     this.socket.removeAllListeners();
 
     this.orderBookService
