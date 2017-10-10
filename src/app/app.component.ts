@@ -49,7 +49,7 @@ export class AppComponent implements OnInit {
 
   public changeTradingPair(tradingPair) {
     this.loadingIndicator = true;
-    this.socket.removeAllListeners();
+    this.socket.removeListener('subscribe');
 
     this.orderBookService
       .retrieveOrderBook(tradingPair)
