@@ -19,17 +19,17 @@ export class AppComponent implements OnInit {
 
   bidColumns = [
     { name: 'Bids' },
-    { name: 'Bittrex Volume' },
-    { name: 'Poloniex Volume' },
-    { name: 'Total Volume' },
+    { name: 'Bittrex Volume', width: '200' },
+    { name: 'Poloniex Volume', width: '200' },
+    { name: 'Total Volume', width: '200' },
     { name: 'Overlap'}
   ];
 
   askColumns = [
     { name: 'Asks' },
-    { name: 'Bittrex Volume' },
-    { name: 'Poloniex Volume' },
-    { name: 'Total Volume' },
+    { name: 'Bittrex Volume', width: '200' },
+    { name: 'Poloniex Volume', width: '200' },
+    { name: 'Total Volume', width: '200' },
     { name: 'Overlap'}
   ];
 
@@ -44,17 +44,28 @@ export class AppComponent implements OnInit {
         this.tradingPairs = data;
       });
 
+    this.changeTradingPair(this.currentTradingPair);
+  }
+
+  public changeTradingPair(tradingPair) {
+    this.loadingIndicator = true;
+    this.socket.emit('unsubscribe', this.currentTradingPair);
+    this.socket.removeAllListeners();
+
     this.orderBookService
-      .retrieveOrderBook(this.currentTradingPair)
+      .retrieveOrderBook(tradingPair)
       .subscribe((data) => {
         this.orderBook = data;
         this.loadingIndicator = false;
       });
 
-    this.socket.on(this.currentTradingPair, (data: any) => {
-        console.log(`Received ${this.currentTradingPair} update via socket io`);
-        this.orderBook = data;
-      });
+    this.socket.emit('subscribe', tradingPair);
+    this.socket.on(tradingPair, (data: any) => {
+      this.orderBook = data;
+      this.loadingIndicator = false;
+    });
+
+    this.currentTradingPair = tradingPair;
   }
 
   @HostListener('window:beforeunload', ['$event'])

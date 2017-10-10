@@ -1,6 +1,24 @@
+<nav>
+  <span id="brand">
+    <a href="">Arbiter</a>
+  </span>
+  <ul id="menu">
+    <li><img src="https://bittrex.com/Content/img/logos/bittrex-192.png" class="bittrex-logo"></li>
+    <li><img src="https://poloniex.com/images/media_kit/Poloniex-logo-800px.png" class="poloniex-logo"></li>
+    <li *ngFor="let tradingPair of tradingPairs;">
+      <a (click)="changeTradingPair(tradingPair)">{{tradingPair}}</a>
+    </li>
+  </ul>
+</nav>
 <div class="flex-container">
-  <!--{{orderBook.bids.length}} Bids / {{orderBook.asks.length}} Asks-->
-  <!--{{tradingPairs}}-->
+<div class="column center">
+  <h4>Current Trading Pair: {{currentTradingPair}}</h4>
+</div>
+  <div class="column center">
+    {{orderBook.bids.length}} Bids / {{orderBook.asks.length}} Asks
+  </div>
+</div>
+<div class="flex-container">
   <div class="column">
     <ngx-datatable
       class="material"

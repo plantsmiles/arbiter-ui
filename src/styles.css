@@ -2,6 +2,13 @@
 @import '~@swimlane/ngx-datatable/release/themes/material.css';
 @import '~@swimlane/ngx-datatable/release/assets/icons.css';
 
+* {
+  list-style: none;
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+}
+
 body {
   font-family: 'RobotoDraft', 'Roboto', 'Helvetica Neue, Helvetica, Arial', sans-serif;
   text-align: left;
@@ -18,9 +25,65 @@ body {
   position: relative;
 }
 
+nav {
+  width: 100%;
+  background: #212121;
+  height: 70px;
+  position: static;
+  z-index: 1;
+}
+
+nav #brand {
+  float: left;
+  display: block;
+  margin-left: 20px;
+  font-size: 50px;
+  line-height: 70px;
+  font-weight: bold;
+}
+
+nav #brand a {
+  color: #fff;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+
+nav #brand a:hover {
+  color: #777777;
+}
+
+nav #menu {
+  float: left;
+  left: 15%;
+  position: Relative;
+}
+
+nav #menu li {
+  display: inline-block;
+  padding: 0px 30px;
+  cursor: pointer;
+  line-height: 70px;
+  position: Relative;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+
+nav #menu li a {
+  color: #fff;
+}
+
+nav #menu li:hover {
+  background: #333;
+}
+
 .flex-container{
   width: 100%;
-  min-height: 300px;
   margin: 0 auto;
   display: -webkit-flex; /* Safari */
   display: flex; /* Standard syntax */
@@ -28,8 +91,21 @@ body {
 
 .flex-container .column{
   padding: 10px;
-  /*background: #dbdfe5;*/
   -webkit-flex: 1; /* Safari */
   -ms-flex: 1; /* IE 10 */
   flex: 1; /* Standard syntax */
+}
+
+.center {
+  text-align: center;
+}
+
+.bittrex-logo {
+  width: 25px;
+  height: 25px;
+}
+
+.poloniex-logo {
+  width: 75px;
+  height: 25px;
 }
